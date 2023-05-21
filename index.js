@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config();
 const app = express()
-const port = 3030 || process.env.port
+const port = 3031 || process.env.port
 // const connection = `mongodb+srv://Muchmark:${process.env.mongopassword}@cluster0.irij3nk.mongodb.net/reshimgath?retryWrites=true&w=majority`
 const connection = `mongodb+srv://theplamnestfarm:${process.env.mongopassword}@cluster0.ewqiatk.mongodb.net/palmnestfarm?retryWrites=true&w=majority`
 app.use(cors())
