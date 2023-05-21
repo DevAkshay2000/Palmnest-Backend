@@ -1,12 +1,15 @@
-// Schema for OTP
-const mongoose = require("mongoose")
-let Activity = new mongoose.Schema({
+const mongoose = require("mongoose");
+let activity = new mongoose.Schema({
+    //basic registraion details
     title: {
         type: String,
+
     },
     image: {
-        type: String,
-    }
+        type: Object,
+
+    },
+
 })
 
-module.exports = mongoose.model("activity", Activity)
+module.exports = mongoose.model("activity", activity)

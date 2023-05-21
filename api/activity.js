@@ -1,9 +1,10 @@
 // @ts-nocheck
-const express = require("express");
-const Gallery = require("../Models/gallery");
+const express = require("express")
 const router = express.Router();
-var cloudinary = require('cloudinary').v2;
+const Activity = require("../Models/activity")
 const cheackUser = require("../Middlewears/Authorizations")
+var cloudinary = require('cloudinary').v2;
+
 cloudinary.config({
     cloud_name: process.env.cloud_name,
     api_key: process.env.api_key,
@@ -11,13 +12,14 @@ cloudinary.config({
     secure: true
 });
 
-//addgallery image private api
-router.post("/addgalleryimage", cheackUser, async (req, res) => {
-    const { eventName, myfile } = req.body;
+//Add
+router.post("/activities",cheackUser, async (req, res) => {
+    const { title, image } = req.body;
+console.log(image)
     try {
-        const file1 = await cloudinary.uploader.upload(myfile);
-        const newImage = Gallery({
-            eventName,
+        const file1 = await cloudinary.uploader.upload(image);
+        const newImage = Activity({
+            title: title,
             image: {
                 public_id: file1.public_id,
                 url: file1.url
@@ -29,15 +31,15 @@ router.post("/addgalleryimage", cheackUser, async (req, res) => {
             res.status(400).send(err)
         })
     }
-    catch {
+    catch(err) {
+        console.log(err)
         res.status(400).send("sorry error occured..")
     }
 })
 
-
 //read public api
-router.get('/getgallery', (req, res) => {
-    Gallery.find().then((val) => {
+router.get('/getactivity', (req, res) => {
+    Activity.find().then((val) => {
         res.status(200).send(val)
     }).catch((err) => {
         res.status(404).send(err)
@@ -47,11 +49,11 @@ router.get('/getgallery', (req, res) => {
 //delete 
 router.post('/deletegalleryimage', cheackUser, (req, response) => {
     const { id } = req.body;
-    Gallery.findById(id).then((val) => {
+    Activity.findById(id).then((val) => {
         cloudinary.uploader
             .destroy(val.image.public_id)
             .then((result) => {
-                Gallery.findByIdAndDelete(id, (err, docs) => {
+                Activity.findByIdAndDelete(id, (err, docs) => {
                     if (err) {
                         response.status(400).send("Error in document deletion..")
                     }
@@ -71,4 +73,4 @@ router.post('/deletegalleryimage', cheackUser, (req, response) => {
     })
 })
 
-module.exports = router;
+module.exports = router

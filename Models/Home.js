@@ -1,12 +1,15 @@
-// Schema for Gallery
-const mongoose = require("mongoose")
-let Carousel = new mongoose.Schema({
-    image: {
-        type: String,
-    },
+const mongoose = require("mongoose");
+let home = new mongoose.Schema({
+    //basic registraion details
     title: {
-        type: String
-    }
+        type: String,
+
+    },
+    image: {
+        type: Object,
+
+    },
+
 })
 
-module.exports = mongoose.model("carousel", Carousel)
+module.exports = mongoose.model("home", home)

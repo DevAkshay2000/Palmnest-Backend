@@ -1,15 +1,23 @@
-// Schema for Gallery
-const mongoose = require("mongoose")
-let Test = new mongoose.Schema({
-    descrption: {
+
+
+const mongoose = require("mongoose");
+let testimonials = new mongoose.Schema({
+    //basic registraion details
+    title: {
         type: String,
     },
-    customer: {
+    author: {
         type: String,
+
+    },
+    description: {
+        type: String,
+
     },
     city: {
-        type: String
+        type: String,
     }
+
 })
 
-module.exports = mongoose.model("testimonials", Test)
+module.exports = mongoose.model("testimonials", testimonials)
