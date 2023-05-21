@@ -8,10 +8,10 @@ let Blog = new mongoose.Schema({
         type: String,
     },
     image: {
-        type: Date,
+        type: Object,
     },
     author: {
-        type: Date
+        type: String
     }
 })
 

@@ -1,20 +1,18 @@
+// Schema for OTP
 const mongoose = require("mongoose")
-let blog = new mongoose.Schema({
-    //basic registraion details
+let Blog = new mongoose.Schema({
     title: {
         type: String,
-
     },
     description: {
         type: String,
-
+    },
+    image: {
+        type: Object,
     },
     author: {
-        type: String,
-
-    },
-    image: String
-
+        type: String
+    }
 })
 
-module.exports = mongoose.model("blog", blog)
+module.exports = mongoose.model("blogs", Blog)

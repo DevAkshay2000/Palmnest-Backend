@@ -13,9 +13,8 @@ cloudinary.config({
 });
 
 //Add
-router.post("/activities",cheackUser, async (req, res) => {
+router.post("/activities", cheackUser, async (req, res) => {
     const { title, image } = req.body;
-console.log(image)
     try {
         const file1 = await cloudinary.uploader.upload(image);
         const newImage = Activity({
@@ -31,7 +30,7 @@ console.log(image)
             res.status(400).send(err)
         })
     }
-    catch(err) {
+    catch (err) {
         console.log(err)
         res.status(400).send("sorry error occured..")
     }
@@ -47,7 +46,7 @@ router.get('/getactivity', (req, res) => {
 })
 
 //delete 
-router.post('/deletegalleryimage', cheackUser, (req, response) => {
+router.post('/deleteactivityimage', cheackUser, (req, response) => {
     const { id } = req.body;
     Activity.findById(id).then((val) => {
         cloudinary.uploader
