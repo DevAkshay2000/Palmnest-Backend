@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 const Activity = require("./Models/Activity")
 const cheackUser = require("./Middlewears/Authorizations")
 var cloudinary = require('cloudinary').v2;
-
+const getAccesstoken = require('./Functions/getAccesstoken')
 cloudinary.config({
     cloud_name: process.env.cloud_name,
     api_key: process.env.api_key,
