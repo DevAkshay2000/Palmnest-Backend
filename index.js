@@ -349,11 +349,11 @@ app.get("/query/userquery", cheackUser, async (req, res) => {
 const testimonials = require("./Models/Testimonials");
 //add blog
 app.post("/testimonials/addtestimonials", cheackUser, async (req, res) => {
-    const { dscription, author, city } = req.body;
+    const { description, author, city } = req.body;
     try {
         const newImage = testimonials({
 
-            dscription,
+            description,
             author,
             city
         })
